@@ -1,0 +1,62 @@
+"Form items pop up when button clicked"
+
+
+<div *ngIf = "!iscollapsed" >
+            <form #edit="ngForm" (ngSubmit)="onedit(name.value,email.value,password.value,phone.value,gender.value) ; " novalidate>
+
+                <br>
+                 <div >
+                 <label for="name">Name:</label>
+                 <input  type="text" id="name" name="name" [(ngModel)]="Name[num]"><br>
+                 
+                 </div>
+         
+                 <div >
+                 <label for="email">Email:</label>
+                 <input type="email" id="email" name="email" [(ngModel)]="Mail[num]"><br>
+                 </div>
+         
+                 <div >
+                 <label for="password">Password:</label>
+                 <input  type="password" id="password" name="password" [(ngModel)]="Password[num]"><br>
+                 </div>
+         
+                 <div >
+                     <label for="phone">Phone number:</label>
+                     <input  type="tel" id="phone" name="phone" [(ngModel)]="Phone[num]"><br>
+                     </div>
+             <br>
+                     <input (click)="toggle(num)" type="submit" value="Submit" class="btn btn-success">
+                 
+             </form>
+        </div>
+       </div>
+
+import { NewuserService } from '../newuser.service';
+
+------------------------------------------------------------------------------------------------------------------
+ printing directly using child component
+        <table class="table table-hover">
+            <tr *ngFor="let row of Name;let i=index">
+                <td >{{Name[i]}}</td>
+                <td>{{Mail[i]}}</td>
+                <td>{{Password[i]}}</td>
+                <td>{{Phone[i]}}</td>
+                <td>{{Gender[i]}}</td>
+                <td>  
+                 <a routerLink="/signup/deluxe">
+                    <button (click)="toggle(i);" type="button" class="btn btn-success btn btn-warning">Edit</button>
+                    </a>
+           
+        </td>  
+                <td *ngIf="!iscollapsed" button class="btn btn-sm btn-warning" (click)="reflect();">Reflect Changes</td>
+                <td><button class=" btn btn-sm btn-warning" (click)="deleteItem(i)">Delete
+                </button></td>
+              
+            </tr>
+            
+            
+            <app-comp3 *ngIf="!iscollapsed" [name]="name1" [email]="email1" [password]="password1" [phone]="phone1" (newname)="NAME=$event" (newemail)="MAIL=$event" (newpassword)="PASSWORD=$event" (newphone)="PHONE=$event"></app-comp3>
+               
+            
+        </table>

@@ -1,0 +1,4 @@
+Angular concepts:
+
+
+In angular - Model in MVC is a .ts file which contains only the definition 

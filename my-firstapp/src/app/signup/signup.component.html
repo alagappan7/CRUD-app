@@ -1,0 +1,126 @@
+
+<br>
+<div class="container text-black" style="background-color:lightblue;">
+<div >
+    <form #f="ngForm" (ngSubmit)="onSubmit(name.value,email.value,password.value,phone.value,gender.value) ; f.reset()" novalidate>
+
+       <br>
+        <div >
+        <label for="name">Name:</label>
+        <input  type="text" id="name" name="name" ngModel  required #name="ngModel"><br>
+        
+        </div>
+
+        <div >
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" ngModel  required #email="ngModel"><br>
+        </div>
+
+        <div >
+        <label for="password">Password:</label>
+        <input  type="password" id="password" name="password" ngModel  required #password="ngModel"><br>
+        </div>
+
+        <div >
+            <label for="phone">Phone number:</label>
+            <input  type="tel" id="phone" name="phone" ngModel  required #phone="ngModel"><br>
+            </div>
+        
+        <div >
+        <label for="gender">Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" ngModel #gender="ngModel">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female" ngModel #gender="ngModel">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other" ngModel #gender="ngModel">
+        <label for="other">Other</label>
+        </div>
+
+        <br>
+
+        
+            <input type="submit" (click)="datatodb(name.value,email.value,password.value,phone.value);" value="Submit" class="btn btn-success">
+            <br>
+           
+        
+        
+    </form>
+
+    <div class="container">
+        <h2>Hover Rows</h2>
+                    
+
+        
+        <div class="container">
+            <h2>From Database</h2>
+                        
+            <table class="table table-hover">
+                <th>email</th>
+                <th>name</th>
+                <th>password</th>
+                <th>phone</th>
+                <th>gender</th>
+                 <tr *ngFor="let row of payload1;let j=index">
+                <td *ngFor = "let column of header">
+                {{row[column]}}
+                    </td>
+                    <td>  
+                    
+                        <button type="button" (click)="retrievebyid(j);"  class="btn btn-success btn btn-warning">Edit</button>
+                        
+               
+            </td>  
+                    <td *ngIf="!iscollapsed" button class="btn btn-sm btn-warning" (click)="reflect();fetchdata();">Reflect Changes</td>
+                    <td><button class=" btn btn-sm btn-warning" (click)="deletedata(j)">Delete
+                    </button></td>
+                  
+                </tr>
+                
+                
+               
+                   
+                
+            </table>
+
+            <div *ngIf="!iscollapsed">
+                <form >
+                    
+                    <br>
+                     <div >
+                     <label for="name">Name:</label>
+                     <input  type="text" id="name" name="name" [(ngModel)]="editname" ><br>
+                     
+                     </div>
+             
+                     <div >
+                     <label for="email">Email:</label>
+                     <input type="email" id="email" name="email" [(ngModel)]="editemail"><br>
+                     </div>
+             
+                     <div >
+                     <label for="password">Password:</label>
+                     <input  type="password" id="password" name="password" [(ngModel)]="editpassword" ><br>
+                     </div>
+             
+                     <div >
+                         <label for="phone">Phone number:</label>
+                         <input  type="tel" id="phone" name="phone" [(ngModel)]="editphone"><br>
+                         </div>
+                 <br>
+                
+                         <input type="submit" (click)="editdatadb();" value="Submit" class="btn btn-success">
+                        
+                 </form>
+            </div>
+            
+            
+
+      
+      
+    
+    
+</div>
+</div>
+<br>
+
+
